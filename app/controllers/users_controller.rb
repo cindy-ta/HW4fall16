@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    id = params[:user_id]
+    id = params[:id]
     @user = User.find(id)
   end
   
@@ -24,21 +24,21 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find params[:user_id]
+    @user = User.find params[:id]
   end
   
   def update
-    @user = User.find params[:user_id]
+    @user = User.find params[:id]
     @user.update_attributes!(user_params)
     flash[:notice] = "#{@movie.title} was successfully update."
     redirect_to user_path(@user)
   end
   
   def destroy
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "User '#{user.title}' deleted."
-    redirect_to users_path
+    redirect_to user_path
   end
   
 end
