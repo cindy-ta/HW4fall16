@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "User '#{user.title}' deleted."
-    redirect_to user_path
+    redirect_to users_path
   end
   
 end
