@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    id = params[:id]
+    id = params[:user_id]
     @user = User.find(id)
   end
   
