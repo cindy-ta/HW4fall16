@@ -12,22 +12,17 @@
     
     #main
     
+      - if flash[:notice]
+        #notice.flash_message= flash[:notice]
+        
+      - elsif flash[:warning]
+        #warning.flash_message= flash[:warning]
+    
       - if !@current_user
         = button_to 'Sign up/Login', login_path, :method => :get, :id => 'signuplogin'
       
       - else
-        = button_to 'Logout', logout_path, :method => :delete, :id => 'logout'
-        = flash[:notice] = "Logged out"
+        = button_to 'Log Out', logout_path, :method => :delete, :id => 'logout'
     
-    
-    
-    
-      - if flash[:notice]
-        #notice.flash_message= flash[:notice]
-      - elsif flash[:warning]
-        #warning.flash_message= flash[:warning]
-      - elsif flash[:notice_user]
-        #notice_user.flash_message= flash[:notice_user]
-
       = yield
       

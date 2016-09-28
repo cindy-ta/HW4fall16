@@ -5,29 +5,25 @@ class SessionsController < ApplicationController
   end
     
   def new
-    
+    # default: render 'new' template
   end
   
-  def show
-    id = params[:id]
-    @user = User.find(id)
-  end
-    
   def create
     
-    if (@user = User.find_by(user_params))
-      flash[:notice] = "You are logged in as #{user_params[:user_id]}"
+    @user = User.find_by(user_params)
+    
+    if (!@user.nil?)
+      flash[:notice] = "You are logged in as #{@user.user_id}."
       session[:session_token] = @user.session_token
       redirect_to movies_path
     else
-      flash[:notice] = "invalid user-id/email combination"
+      flash[:notice] = "Invalid user credentials. Re-enter, or click Sign-up for an account"
       redirect_to login_path
     end
     
   end
 
   def destroy
-    flash[:notice] = "Logged out"
     session[:session_token] = nil
     redirect_to movies_path
   end

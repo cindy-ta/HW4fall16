@@ -6,12 +6,6 @@ class UsersController < ApplicationController
   
   def new
     # default: render 'new' template
-    
-  end
-  
-  def show
-    id = params[:id]
-    @user = User.find(id)
   end
   
   def index
@@ -19,12 +13,14 @@ class UsersController < ApplicationController
   end
     
   def create
+    
     if User.exists?(:user_id => user_params[:user_id])
-      flash[:notice_user] = "Username is unavailable."
+      flash[:notice] = "Username is unavailable."
       redirect_to login_path
+      
     else
       User.create_user!(user_params);
-      flash[:notice_user] = "Welcome #{user_params[:user_id]}. Your account has been created."
+      flash[:notice] = "Welcome #{user_params[:user_id]}. Your account has been created."
       redirect_to login_path
     end
     
